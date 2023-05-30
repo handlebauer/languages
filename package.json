@@ -12,16 +12,6 @@
       "types": "./lib/utils/index.d.ts",
       "import": "./lib/utils/index.mjs",
       "require": "./lib/utils/index.cjs"
-    },
-    "./schemas.js": {
-      "types": "./lib/schemas/index.d.ts",
-      "import": "./lib/schemas/index.mjs",
-      "require": "./lib/schemas/index.cjs"
-    },
-    "./errors.js": {
-      "types": "./lib/errors/index.d.ts",
-      "import": "./lib/errors/index.mjs",
-      "require": "./lib/errors/index.cjs"
     }
   },
   "module": "./lib/index.mjs",
@@ -50,13 +40,14 @@
     "build": "rollup -c",
     "types": "tsc -p jsconfig.json",
     "clean": "shx rm -rf ./lib",
-    "prepublishOnly": "npm run clean && npm run types && npm run build",
+    "prepublishOnly": "node src/generate && npm run clean && npm run types && npm run build",
     "test": "ava",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@hbauer/eslint-config": "^1.7.3",
     "@hbauer/prettier-config": "^1.1.1",
+    "@hbauer/scrape": "^0.7.9",
     "@types/node": "^20.2.5",
     "ava": "^5.3.0",
     "dotenv": "^16.1.0",
@@ -68,6 +59,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "remeda": "^1.19.0",
     "zod": "^3.21.4"
   }
 }

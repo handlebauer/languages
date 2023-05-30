@@ -1,0 +1,72 @@
+{
+  "name": "@hbauer/languages",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    },
+    "./utils.js": {
+      "types": "./lib/utils/index.d.ts",
+      "import": "./lib/utils/index.mjs",
+      "require": "./lib/utils/index.cjs"
+    },
+    "./schemas.js": {
+      "types": "./lib/schemas/index.d.ts",
+      "import": "./lib/schemas/index.mjs",
+      "require": "./lib/schemas/index.cjs"
+    },
+    "./errors.js": {
+      "types": "./lib/errors/index.d.ts",
+      "import": "./lib/errors/index.mjs",
+      "require": "./lib/errors/index.cjs"
+    }
+  },
+  "module": "./lib/index.mjs",
+  "main": "./lib/index.cjs",
+  "types": "types/index.d.ts",
+  "files": [
+    "lib",
+    "types"
+  ],
+  "author": "Donald Geddes",
+  "licence": "MIT",
+  "repository": "https://github.com/handlebauer/languages.git",
+  "publishConfig": {
+    "access": "public"
+  },
+  "ava": {
+    "require": [
+      "dotenv/config"
+    ]
+  },
+  "prettier": "@hbauer/prettier-config",
+  "eslintConfig": {
+    "extends": "@hbauer/eslint-config"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "types": "tsc -p jsconfig.json",
+    "clean": "shx rm -rf ./lib",
+    "prepublishOnly": "npm run clean && npm run types && npm run build",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "@hbauer/eslint-config": "^1.7.3",
+    "@hbauer/prettier-config": "^1.1.1",
+    "@types/node": "^20.2.5",
+    "ava": "^5.3.0",
+    "dotenv": "^16.1.0",
+    "eslint": "^8.41.0",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
+    "rollup": "^3.23.0",
+    "shx": "^0.3.4",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "zod": "^3.21.4"
+  }
+}

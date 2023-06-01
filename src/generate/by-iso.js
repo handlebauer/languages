@@ -2,6 +2,8 @@ import { readFile, writeFile } from 'fs/promises'
 import { flatten, map, mapToObj } from 'remeda'
 import { formatJS } from '../utils/format-js.js'
 
+const path = 'src/by-iso.js'
+
 /**
  * @param {import('../types/index.js').Language} language
  */
@@ -11,8 +13,7 @@ export const simplifyNames = ({ name, ...rest }) =>
 /**
  * @param {import('../types/index.js').LanguagesBy} byISO
  */
-export const saveByISO = byISO =>
-  writeFile('src/by-iso.js', formatJS('byISO', byISO))
+export const save = byISO => writeFile(path, formatJS('byISO', byISO))
 
 export const generateByISO = () =>
   readFile('src/data/languages.json', 'utf-8')
@@ -20,4 +21,4 @@ export const generateByISO = () =>
     .then(map(simplifyNames))
     .then(flatten())
     .then(mapToObj(language => [language.iso6391, language.name]))
-    .then(saveByISO)
+    .then(save)

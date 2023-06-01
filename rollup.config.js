@@ -3,7 +3,7 @@ import pkg from './package.json' assert { type: 'json' }
 const main = './src/index.js'
 const utils = './src/utils/index.js'
 
-const external = Object.keys(pkg.dependencies)
+const external = Object.keys(pkg.dependencies).concat('util')
 
 // eslint-disable-next-line import/no-default-export
 export default [

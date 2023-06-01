@@ -2,6 +2,8 @@ import { readFile, writeFile } from 'fs/promises'
 import { flatten, map, mapToObj } from 'remeda'
 import { formatJS } from '../utils/format-js.js'
 
+const path = 'src/by-name.js'
+
 /**
  * @param {import('../types/index.js').Language} language
  */
@@ -11,8 +13,7 @@ export const simplifyNames = ({ name, ...rest }) =>
 /**
  * @param {import('../types/index.js').LanguagesBy} byName
  */
-export const saveByName = byName =>
-  writeFile('src/by-name.js', formatJS('byName', byName))
+export const save = byName => writeFile(path, formatJS('byName', byName))
 
 export const generateByName = () =>
   readFile('src/data/languages.json', 'utf-8')
@@ -20,4 +21,4 @@ export const generateByName = () =>
     .then(map(simplifyNames))
     .then(flatten())
     .then(mapToObj(language => [language.name, language.iso6391]))
-    .then(saveByName)
+    .then(save)

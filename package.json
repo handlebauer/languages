@@ -37,10 +37,12 @@
     "extends": "@hbauer/eslint-config"
   },
   "scripts": {
-    "build": "rollup -c",
-    "types": "tsc -p jsconfig.json",
+    "generate": "node src/generate",
+    "format": "prettier --write src",
     "clean": "shx rm -rf ./lib",
-    "prepublishOnly": "node src/generate && npm run clean && npm run types && npm run build",
+    "types": "tsc -p jsconfig.json",
+    "build": "rollup -c",
+    "prepublishOnly": "npm run generate && npm run format && npm run clean && npm run types && npm run build",
     "test": "ava",
     "prepare": "husky install"
   },

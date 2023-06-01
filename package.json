@@ -43,7 +43,6 @@
     "types": "tsc -p jsconfig.json",
     "build": "rollup -c",
     "prepublishOnly": "npm run generate && npm run format && npm run clean && npm run types && npm run build",
-    "test": "ava",
     "prepare": "husky install"
   },
   "devDependencies": {
